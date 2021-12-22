@@ -64,18 +64,16 @@ if(isset($uri[0])){
 				$ctr=ucfirst($uri[1]); //uri ke 1 = controller
 
 				//routing ke modul+controller+fungsi yg dituju
-				$routes->get('/'.$uri[0].'/'.$uri[1].'/'.$uri[2],'\App\Modules\\'.$mdl.'\Controllers\\'.$ctr.'::'.$sgm); 
-				$routes->post('/'.$uri[0].'/'.$uri[1].'/'.$uri[2],'\App\Modules\\'.$mdl.'\Controllers\\'.$ctr.'::'.$sgm);
+				$routes->add('/'.$uri[0].'/'.$uri[1].'/'.$uri[2],'\App\Modules\\'.$mdl.'\Controllers\\'.$ctr.'::'.$sgm); 
+				$routes->add('/'.$uri[0].'/'.$uri[1].'/'.$uri[2].'/(:any)','\App\Modules\\'.$mdl.'\Controllers\\'.$ctr.'::'.$sgm.'/$1');
 			}else if(isset($uri[1])){
 				$ctr=ucfirst($uri[1]);
 
 				//routing ke modul + controller yg dituju
-				$routes->get('/'.$uri[0].'/'.$uri[1],'\App\Modules\\'.$mdl.'\Controllers\\'.$ctr.'::'.$sgm); 
-				$routes->post('/'.$uri[0].'/'.$uri[1],'\App\Modules\\'.$mdl.'\Controllers\\'.$ctr.'::'.$sgm);
+				$routes->add('/'.$uri[0].'/'.$uri[1],'\App\Modules\\'.$mdl.'\Controllers\\'.$ctr.'::'.$sgm);
 			}else{
 				//routing ke modul dg controller utama yg ditampilkan
-				$routes->get('/'.$uri[0],'\App\Modules\\'.$mdl.'\Controllers\\'.$ctr.'::'.$sgm);
-				$routes->post('/'.$uri[0],'\App\Modules\\'.$mdl.'\Controllers\\'.$ctr.'::'.$sgm);
+				$routes->add('/'.$uri[0],'\App\Modules\\'.$mdl.'\Controllers\\'.$ctr.'::'.$sgm);
 			}
 		}
 	}
